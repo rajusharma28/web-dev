@@ -1,0 +1,236 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+.orbit{
+    height: 200px;
+    width: 150px;
+    /* background-color: green; */
+    position: relative;
+    top: 10px;
+    bottom: 20px;
+    right: 10px;
+}
+
+.sun{
+    height: 100px;
+    width: 100px;
+    box-shadow: rgb(227, 115, 41) 10px 10px 20px 20px;
+    border-radius: 50%;
+    background-color: rgb(255, 255, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+.mercury{
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 10px;
+    background-color: #825a5a;
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    animation-name: mar;
+    animation-duration: 3s;
+    animation-delay: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+@keyframes mar {
+    from{
+        transform: rotate(0deg) translate(240px)  rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg) translate(240px) rotate(-360deg);
+    }
+    
+}
+/* .orbital{
+    width: 250px;
+    height: 250px;
+    border: 1px dashed white;
+    border-radius: 50%;
+     position: absolute;
+     bottom: 10px;
+     right: 2px;
+
+
+   
+} */
+
+.venus{
+    width: 60px;
+    height: 60px;
+    background-color:#D9C8C3 ;
+    border-radius: 50%;
+    display: flex;
+    color: red;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    animation-name: ven;
+    animation-duration: 6s;
+    /* animation-delay: 3s; */
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+@keyframes ven {
+    from{
+        transform: rotate(0deg) translate(150px) rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg) translate(150px) rotate(-360deg);
+    }
+    
+}
+
+
+
+.jupiter{
+    width: 80px;
+    height: 80px;
+    background-color:#D9A56E ;
+    border-radius: 50%;
+    display: flex;
+    color:white;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    animation-name: ear;
+    animation-duration: 8s;
+    animation-delay: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+@keyframes jupi {
+    from{
+        transform: rotate(0deg) translate(250px) ;
+    }
+    to{
+        transform: rotate(360deg) translate(250px);
+    }
+    
+}
+.earth{
+    width: 80px;
+    height: 80px;
+    background-color:#2A6CC3 ;
+    border-radius: 50%;
+    display: flex;
+    color:blue;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    animation-name: ear;
+    animation-duration: 5s;
+    animation-delay: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+@keyframes ear {
+    from{
+        transform: rotate(0deg) translate(300px);
+    }
+    to{
+        transform: rotate(360deg) translate(300px);
+    }
+    
+}
+
+/* .mars{
+    width: 50px;
+    height: 50px;
+    background-color:#B44A1D ;
+    border-radius: 50%;
+    display: flex;
+    color:white;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    animation-name: mar;
+    animation-duration: 9s;
+    animation-delay: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+@keyframes mar {
+    from{
+        transform: rotate(0deg) translate(275px);
+    }
+    to{
+        transform: rotate(360deg) translate(275px);
+    }
+    
+} */
+
+
+.mars {
+    width: 26px;
+    height: 26px;
+    background-color: rgb(201, 4, 0);
+    top: 86px;
+    left: 12px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mars-orbit {
+
+    position: absolute;
+    width: 390px;
+    height: 390px;
+    border: solid 1px rgb(201, 4, 0);
+    top: 88px;
+    left: -124px;
+    border-radius: 50%;
+
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: orbit;
+    animation-duration: 14s;
+    animation-duration: 14s;
+  }
+
+
+  keyframes orbit {
+    from {
+      transform: rotate(0deg) translate(250px);
+    }
+    to 
+    {
+      transform: rotate(360deg) translate(250px)
+    }
+  }
+

@@ -1,0 +1,21 @@
+.text{
+    /* text-align: left; */
+    /* text-align: right; */
+    /* text-align: justify; */
+
+    /* 2: direction: ltr , rtl */
+
+       /* direction:rtl; */
+
+       /* 3 unicode-bidi: bidi-override */
+       /* vertical-align: baseline; */
+       /* unicode-bidi: isolate; */
+
+}
+
+.uni{
+    /* unicode-bidi: plaintext; */
+    /* text-align-last:justify; */
+
+    /* vertical-align:super; */
+}

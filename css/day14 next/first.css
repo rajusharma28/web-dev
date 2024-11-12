@@ -1,0 +1,39 @@
+h2{
+    width: 400px;
+    height: 400px;
+    padding: 10px;
+    /* margin: 20px; */
+    background-color: aqua;
+    border-radius: 20px;
+    padding: 10px 20px 30px 40px;
+    /* 10px: top padding 
+    20px: right padding
+   30px: bottom padding
+    40px: left padding */
+    border: 5px solid black;
+    box-sizing: border-box;
+     
+  
+}
+h3
+ {
+    background-color: rgb(205, 255, 210);
+    color: aquamarine;
+      
+      
+     background-color: brown;  
+     background-color: rgb(82, 180, 40); 
+    
+     width: 10ev;  
+     height: 50ev;
+     padding: 20px;
+
+ }
+
+ ul{
+    background: rgb(0, 255, 217);
+ }
+ p{
+    border: 5px solid black;
+    padding: 20px;
+ }

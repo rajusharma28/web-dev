@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+}
+.container{
+    background-color: gray;
+    padding: 4rem;
+    display: grid;
+    gap: 1rem;
+    height: 100%;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(3,1fr);
+
+}
+/* .box{
+    background-color: green;
+    font-size: 1.5rem;
+}
+.first{
+    grid-row: 1/4;
+}
+.second{
+    grid-column: 2/4;
+}
+.six{
+    grid-row: 2/4;
+    grid-column: 4/5;
+}
+.fourth,.eight{
+    background-color: yellow;
+}
+.five,.seven ,.third */
+/* {
+    background-color: red;
+} */

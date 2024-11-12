@@ -1,0 +1,12 @@
+.container{
+    background: rgba(84, 101, 103, 0.533);
+    width: 40vw;
+    height: 60vh;
+    position: relative;
+}
+.box{
+    border: 5px solid black;
+    background: rgb(138, 132, 64);
+    width: 200px;
+    height: 130px;
+}

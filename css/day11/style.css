@@ -1,0 +1,23 @@
+h1{
+    color: red;
+}
+ul{
+    color: rgb(255, 127, 146);
+    background-color: rgb(39, 91, 80);
+}
+.first{
+    color: red;
+    background-color: bisque;
+}
+#second{
+    size: 10px;
+    color: blue;
+}
+#third{
+    color: blue;
+    background-color:chartreuse;
+}
+#fourth{
+    color: red;
+    background-color: aquamarine;
+}

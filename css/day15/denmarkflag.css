@@ -1,0 +1,37 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.first, .third {
+    display: inline-block;
+    height: 40vh;
+    width: 25vw;
+    background-color: red;
+}
+
+.second, .fourth {
+    display: inline-block;
+    height: 40vh;
+    width: 60vw;
+    background-color: red;
+}
+
+.first, .third {
+    margin-left: 15vw; /* Adjust positioning */
+}
+
+.second, .fourth {
+    margin-right: 20vh; /* Adjust positioning */
+}

@@ -1,0 +1,17 @@
+.box{
+    width: 150px;
+    height: 200px;
+    border: 5px solid black;
+    background-color: aquamarine;
+    color: rgba(6, 11, 11, 0.793);
+    margin-top: 20px;
+    margin-left: 20px;
+  text-align: center;
+  
+  
+  /* box-shadow: 5px 5px 5px 5px  red; */
+  /* box-shadow: 12px 22px 3px px rgba(203, 115, 15, 0.468);
+   border-radius: 210px 209px 235px 235px  ; */
+
+
+}

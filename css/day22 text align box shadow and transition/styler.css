@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.card-holder{
+    margin-top: 2rem;
+    /* justify-content: center; */
+    justify-content: center;
+   
+    text-align: center;
+     display: flex;
+     margin-left: 200px;
+
+    width: 200px;
+    height: 200px;
+    border: 5px solid black;
+}
+.card{
+    justify-content: center;
+    text-align: center;
+    background-color: aqua;
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+     font-family:'Times New Roman', Times, serif ;
+}

@@ -1,0 +1,14 @@
+h1{
+    margin:0;
+    background-color: aqua;
+    position: absolute;
+
+   position: fixed;
+
+    scroll-behavior: smooth;
+    display: inline-block;
+
+}
+p{
+    margin: top 20px;;
+}

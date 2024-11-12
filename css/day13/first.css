@@ -1,0 +1,19 @@
+*{
+    background-color: rgb(0, 255, 255)
+
+}
+h1{
+
+    font-variant: small-caps;
+/* font-stretch: expanded; */
+
+    /* font-style: normal; */
+    /* text-transform: lowercase; */
+
+    /* text-transform: uppercase; */
+    background-color: black;
+    color: brown;
+}
+/* Font stretch */
+/* font variant */
+/* % of viewport width */
