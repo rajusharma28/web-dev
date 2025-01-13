@@ -1,0 +1,142 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olympics Countdown & Real-Time Clock</title>
+  <style>
+    #root {
+      font-size: 60px;
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+
+    <div class="info">
+        <p>How many days untill</p>
+         <h1>Summary olympics 2028</h1>
+        <p><i class="fa-solid fa-calendar-days"></i> friday,21 july 2028</p>
+        <p><i class="fa-solid fa-location-dot"></i>Los angeles, USA</p>
+    </div>        
+
+  <div id="root">Loading...</div>
+
+  <script>
+    // Countdown Timer
+    function olympicsCountdown() {
+      const date1 = new Date();
+      const date2 = new Date("2028-07-14T00:00:00");
+
+      const dateDiff = date2 - date1;
+      const days = Math.floor(dateDiff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((dateDiff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((dateDiff / (1000 * 60)) % 60);
+      const seconds = Math.floor((dateDiff / 1000) % 60);
+      document.getElementById("info")
+
+      console.log(`Olympics Countdown Time: Days: ${days}, Hours: ${hours}, Minutes: ${minutes}, Seconds: ${seconds}`);
+    }
+
+    olympicsCountdown(); // Call the countdown once to log in the console.
+
+    // Real-Time Clock
+    function timing() {
+      const timer = document.getElementById("root");
+      const now = new Date();
+      const IndianTime = now.toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata" });
+      timer.innerHTML = IndianTime;
+    }
+
+    timing(); // Initialize clock immediately.
+    setInterval(timing, 1000); // Update clock every second.
+  </script>
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olympics Countdown & Real-Time Clock</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: rgb(102, 102, 202);
+      color: white;
+    }
+    h1, h2 {
+      margin: 10px 0;
+    }
+    .clock, .countdown {
+      font-size: 50px;
+      text-align: center;
+      padding: 10px;
+    }
+    .countdown {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <p>many days untill</p>
+  <h1>Summary Olympics 2028</h1>
+
+  <div id="clock" class="clock">Loading Time...</div>
+  <div id="countdown" class="countdown">Calculating Countdown...</div>  
+
+  <script>
+    // Real-Time Clock
+    function updateClock() {
+      const clockElement = document.getElementById("clock");
+      const now = new Date();
+      const IndianTime = now.toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata" });
+      clockElement.innerHTML = `Current Time (IST): ${IndianTime}`;
+    }
+
+    // Olympics Countdown
+    function updateCountdown() {
+      const countdownElement = document.getElementById("countdown");
+      const now = new Date();
+      const olympicsDate = new Date("2028-07-14T00:00:00");
+
+      const timeDiff = olympicsDate - now;
+
+      if (timeDiff <= 0) {
+        countdownElement.innerHTML = "The Olympics have started!";
+        return;
+      }
+
+      const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDiff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
+      const seconds = Math.floor((timeDiff / 1000) % 60);
+
+      countdownElement.innerHTML = `
+        Countdown to Olympics: 
+        ${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds
+      `;
+    }
+
+    // Initialize and Update Timers
+    updateClock();
+    updateCountdown();
+    setInterval(updateClock, 1000); // Update the clock every second.
+    setInterval(updateCountdown, 1000); // Update the countdown every second.
+  </script>
+</body>
+</html>
