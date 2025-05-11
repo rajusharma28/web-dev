@@ -1,0 +1,31 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#root{
+    width: 500px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgb(220,237,237);
+    text-align: center;
+}
+button{
+    width: 70px;
+    height: 40px;
+    color: white;
+    margin-right: 10px;
+
+}
+.Counter{
+    height: 200px;
+    width: 300px;
+    background-color: blanchedalmond;
+    text-align: center;
+
+}

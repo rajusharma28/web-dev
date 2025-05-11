@@ -1,0 +1,32 @@
+body {
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+#root {
+  text-align: center;
+  background-color: #dceded;
+  width: 500px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+button {
+  color: #fff;
+  width: 70px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.Counter {
+  text-align: center;
+  background-color: #ffebcd;
+  width: 300px;
+  height: 200px;
+}
+/*# sourceMappingURL=index.3a01df49.css.map */
