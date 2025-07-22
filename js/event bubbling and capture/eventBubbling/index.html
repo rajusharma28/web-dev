@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(33 ,32,32);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #grandParent{
+            height: 400px;
+            width: 400px;
+            border: 2px solid black;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        #parent{
+            height: 200px;
+            width: 200px;
+            border: 2px solid black;
+             display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #child{
+            height: 100px;
+            width: 100px;
+            border: 2px solid black;
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="grandParent">
+        <div id="parent">
+            <div id="child">
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const grandParent = document.getElementById('grandParent');
+        const parent = document.getElementById('parent');
+        const child = document.getElementById('child');
+
+        child.addEventListener('click',(event)=>{
+            // console.log("child clicked");
+            console.log(event.target);
+            
+            
+        },false)
+
+          parent.addEventListener('click',(event)=>{
+            // console.log("parent clicked");
+                //  console.log(event.target);
+
+                console.log(event.currentTarget);
+                
+            
+        },false)
+
+           grandParent.addEventListener('click',(event)=>{
+            // console.log(" grand clicked");
+                //  console.log(event.target);
+               event.stopPropagation();
+
+                console.log(event.currentTarget);
+                
+
+            console.log(event.currentTarget);
+            
+        },true)
+
+        // bubble -> that means false
+
+       // addEventListener(first_event,callback,capture);
+
+
+
+       // event Delegation 
+
+    </script>
+
+        
+</body>
+</html>
