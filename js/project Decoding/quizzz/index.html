@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Quiz</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, #FF9933, #FFFFFF, #138808);
+            z-index: 10;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2.5rem;
+            color: #FF9933;
+            text-shadow: 0 0 10px rgba(255, 153, 51, 0.5);
+            position: relative;
+        }
+        
+        h1::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #FF9933, #138808);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+        
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .progress {
+            background: rgba(255, 255, 255, 0.1);
+            height: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, #FF9933, #138808);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+        }
+        
+        .question-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .question {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #FF9933;
+            font-weight: 500;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 600px) {
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .option:hover {
+            background: rgba(255, 153, 51, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .option.selected {
+            background: rgba(19, 136, 8, 0.3);
+            border-color: #138808;
+        }
+        
+        .option input {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        button {
+            background: linear-gradient(to right, #FF9933, #d17a0f);
+            color: #000;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        button:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .result-container {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .score {
+            font-size: 5rem;
+            font-weight: bold;
+            color: #FF9933;
+            margin: 20px 0;
+            text-shadow: 0 0 20px rgba(255, 153, 51, 0.7);
+        }
+        
+        .message {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #138808;
+        }
+        
+        .summary {
+            margin: 20px 0;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .summary-item {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .summary-item.correct {
+            color: #138808;
+        }
+        
+        .summary-item.incorrect {
+            color: #ff3333;
+        }
+        
+        .restart-btn {
+            background: linear-gradient(to right, #138808, #0a5c04);
+            color: white;
+            margin-top: 15px;
+        }
+        
+        .cricket-icon {
+            position: absolute;
+            opacity: 0.05;
+            font-size: 15rem;
+            transform: rotate(-20deg);
+            z-index: 0;
+            bottom: -50px;
+            right: -30px;
+            pointer-events: none;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cricket Quiz</h1>
+        <div class="cricket-icon">🏏</div>
+        
+        <div class="quiz-header">
+            <div class="progress">
+                <div class="progress-bar" id="progress"></div>
+            </div>
+            <div class="stats">
+                <div class="stat" id="question-count">Question: 1/5</div>
+                <div class="stat" id="score">Score: 0</div>
+            </div>
+        </div>
+        
+        <form id="quizForm">
+            <!-- Questions will be inserted here by JavaScript -->
+        </form>
+        
+        <div class="result-container" id="result">
+            <h2>Quiz Completed!</h2>
+            <div class="message" id="message"></div>
+            <div class="score" id="final-score">0/5</div>
+            <div class="summary" id="summary"></div>
+            <button class="restart-btn" id="restart">Play Again</button>
+        </div>
+        
+        <footer>
+            Test your cricket knowledge with this fun quiz!
+        </footer>
+    </div>
+    
+    <script>
+        const questionBank = [
+            { question: "Who has the most centuries in international cricket?", options: ["Sachin Tendulkar", "Virat Kohli", "Ricky Ponting", "Jacques Kallis"], answer: "Sachin Tendulkar" },
+            { question: "Which country won the first ICC Cricket World Cup?", options: ["Australia", "England", "West Indies", "India"], answer: "West Indies" },
+            { question: "Who is known as the 'God of Cricket'?", options: ["Virat Kohli", "Don Bradman", "MS Dhoni", "Sachin Tendulkar"], answer: "Sachin Tendulkar" },
+            { question: "What is the highest individual score in ODI cricket?", options: ["264", "200", "237", "275"], answer: "264" },
+            { question: "Which bowler has taken the most wickets in Test cricket?", options: ["Muttiah Muralitharan", "Shane Warne", "James Anderson", "Anil Kumble"], answer: "Muttiah Muralitharan" },
+            { question: "Which Indian player is known as the 'Hitman'?", options: ["Rohit Sharma", "Virat Kohli", "MS Dhoni", "Shikhar Dhawan"], answer: "Rohit Sharma" },
+            { question: "Who won the ICC Cricket World Cup 2011?", options: ["India", "Sri Lanka", "Australia", "England"], answer: "India" },
+            { question: "Who holds the record for the fastest century in ODI cricket?", options: ["AB de Villiers", "Chris Gayle", "Shahid Afridi", "Virat Kohli"], answer: "AB de Villiers" },
+            { question: "Which country is known as the Proteas in cricket?", options: ["South Africa", "Australia", "England", "New Zealand"], answer: "South Africa" },
+            { question: "Who has the most sixes in international cricket?", options: ["Chris Gayle", "MS Dhoni", "Rohit Sharma", "Shahid Afridi"], answer: "Chris Gayle" },
+            { question: "Which team has won the most ICC Cricket World Cups?", options: ["Australia", "India", "West Indies", "England"], answer: "Australia" },
+            { question: "Who is the youngest player to score a century in international cricket?", options: ["Shahid Afridi", "Virat Kohli", "Sachin Tendulkar", "Rashid Khan"], answer: "Shahid Afridi" },
+            { question: "Which cricket stadium is the largest in the world?", options: ["Narendra Modi Stadium", "MCG", "Lord's", "Eden Gardens"], answer: "Narendra Modi Stadium" },
+            { question: "Who is the fastest bowler in cricket history?", options: ["Shoaib Akhtar", "Brett Lee", "Shaun Tait", "Mitchell Starc"], answer: "Shoaib Akhtar" },
+            { question: "Which player has the highest batting average in Test cricket?", options: ["Don Bradman", "Steve Smith", "Kane Williamson", "Jacques Kallis"], answer: "Don Bradman" },
+            { question: "Who is the captain of the Indian cricket team in 2023?", options: ["Rohit Sharma", "Virat Kohli", "KL Rahul", "Hardik Pandya"], answer: "Rohit Sharma" },
+            { question: "Which bowler has the best bowling figures in ODI cricket?", options: ["Chaminda Vaas", "Muttiah Muralitharan", "Glenn McGrath", "Anil Kumble"], answer: "Chaminda Vaas" },
+            { question: "Which country is known as the Black Caps in cricket?", options: ["New Zealand", "South Africa", "England", "West Indies"], answer: "New Zealand" },
+            { question: "Who is the highest run-scorer in T20 internationals?", options: ["Virat Kohli", "Rohit Sharma", "Babar Azam", "Chris Gayle"], answer: "Virat Kohli" },
+            { question: "Which cricket ground is known as the 'Home of Cricket'?", options: ["Lord's", "MCG", "Eden Gardens", "The Oval"], answer: "Lord's" }
+        ];
+
+        // Quiz state
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let userAnswers = {};
+        let quizQuestions = [];
+
+        // DOM elements
+        const quizForm = document.getElementById('quizForm');
+        const resultContainer = document.getElementById('result');
+        const progressBar = document.getElementById('progress');
+        const questionCountElement = document.getElementById('question-count');
+        const scoreElement = document.getElementById('score');
+        const finalScoreElement = document.getElementById('final-score');
+        const messageElement = document.getElementById('message');
+        const summaryElement = document.getElementById('summary');
+        const restartButton = document.getElementById('restart');
+
+        // Initialize the quiz
+        function initQuiz() {
+            // Reset state
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = {};
+            
+            // Select 5 random unique questions
+            quizQuestions = selectRandomQuestions(5);
+            
+            // Render the first question
+            renderQuestion();
+            
+            // Update UI
+            updateProgress();
+            updateScore();
+            
+            // Hide result container
+            resultContainer.style.display = 'none';
+        }
+
+        // Select random unique questions
+        function selectRandomQuestions(count) {
+            const shuffled = [...questionBank].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        // Render current question
+        function renderQuestion() {
+            if (currentQuestionIndex >= quizQuestions.length) {
+                showResults();
+                return;
+            }
+
+            const question = quizQuestions[currentQuestionIndex];
+            quizForm.innerHTML = '';
+
+            const questionContainer = document.createElement('div');
+            questionContainer.className = 'question-container';
+            
+            const questionElement = document.createElement('div');
+            questionElement.className = 'question';
+            questionElement.textContent = `${currentQuestionIndex + 1}. ${question.question}`;
+            questionContainer.appendChild(questionElement);
+            
+            const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'options';
+            
+            question.options.forEach((option, index) => {
+                const optionContainer = document.createElement('label');
+                optionContainer.className = `option ${userAnswers[currentQuestionIndex] === option ? 'selected' : ''}`;
+                
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = 'answer';
+                input.value = option;
+                input.dataset.index = currentQuestionIndex;
+                
+                // Pre-select if user already answered
+                if (userAnswers[currentQuestionIndex] === option) {
+                    input.checked = true;
+                }
+                
+                input.addEventListener('change', () => {
+                    userAnswers[currentQuestionIndex] = option;
+                    document.querySelectorAll('.option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    optionContainer.classList.add('selected');
+                });
+                
+                optionContainer.appendChild(input);
+                optionContainer.appendChild(document.createTextNode(option));
+                optionsContainer.appendChild(optionContainer);
+            });
+            
+            questionContainer.appendChild(optionsContainer);
+            
+            const controlsContainer = document.createElement('div');
+            controlsContainer.className = 'controls';
+            
+            const prevButton = document.createElement('button');
+            prevButton.id = 'prev-btn';
+            prevButton.textContent = 'Previous';
+            prevButton.disabled = currentQuestionIndex === 0;
+            prevButton.addEventListener('click', () => {
+                currentQuestionIndex--;
+                renderQuestion(); 
+            });
+            
+            const nextButton = document.createElement('button');
+            nextButton.id = 'next-btn';
+            nextButton.textContent = currentQuestionIndex === quizQuestions.length - 1 ? 'Submit' : 'Next';
+            nextButton.addEventListener('click', () => {
+                if (!userAnswers[currentQuestionIndex]) {
+                    alert('Please select an answer before proceeding.');
+                    return;
+                }
+                
+                currentQuestionIndex++;
+                renderQuestion();
+            });
+            
+            controlsContainer.appendChild(prevButton);
+            controlsContainer.appendChild(nextButton);
+            questionContainer.appendChild(controlsContainer);
+            
+            quizForm.appendChild(questionContainer);
+            updateProgress();
+        }
+
+        // Update progress bar and question count
+        function updateProgress() {
+            const progressPercentage = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+            questionCountElement.textContent = `Question: ${currentQuestionIndex + 1}/${quizQuestions.length}`;
+        }
+
+        // Update score display
+        function updateScore() {
+            scoreElement.textContent = `Score: ${score}`;
+        }
+
+        // Calculate final score and show results
+        function showResults() {
+            // Calculate score
+            score = 0;
+            quizQuestions.forEach((question, index) => {
+                if (userAnswers[index] === question.answer) {
+                    score++;
+                }
+            });
+            
+            // Update final score
+            finalScoreElement.textContent = `${score}/${quizQuestions.length}`;
+            
+            // Set message based on score
+            let message = '';
+            if (score === quizQuestions.length) {
+                message = 'Perfect! You\'re a cricket expert!';
+            } else if (score >= quizQuestions.length * 0.7) {
+                message = 'Great job! You know your cricket!';
+            } else if (score >= quizQuestions.length * 0.5) {
+                message = 'Good effort! Keep learning!';
+            } else {
+                message = 'Better luck next time!';
+            }
+            messageElement.textContent = message;
+            
+            // Generate summary
+            summaryElement.innerHTML = '';
+            quizQuestions.forEach((question, index) => {
+                const isCorrect = userAnswers[index] === question.answer;
+                
+                const summaryItem = document.createElement('div');
+                summaryItem.className = `summary-item ${isCorrect ? 'correct' : 'incorrect'}`;
+                
+                const questionText = document.createElement('p');
+                questionText.textContent = `${index + 1}. ${question.question}`;
+                questionText.style.fontWeight = 'bold';
+                summaryItem.appendChild(questionText);
+                
+                const userAnswer = document.createElement('p');
+                userAnswer.textContent = `Your answer: ${userAnswers[index] || 'Not answered'}`;
+                summaryItem.appendChild(userAnswer);
+                
+                if (!isCorrect) {
+                    const correctAnswer = document.createElement('p');
+                    correctAnswer.textContent = `Correct answer: ${question.answer}`;
+                    correctAnswer.style.color = '#138808';
+                    summaryItem.appendChild(correctAnswer);
+                }
+                
+                summaryElement.appendChild(summaryItem);
+            });
+            
+            // Show result container
+            resultContainer.style.display = 'block';
+            quizForm.style.display = 'none';
+        }
+
+        // Event listeners
+        restartButton.addEventListener('click', initQuiz);
+
+        // Initialize the quiz
+        window.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+</body>
+</html>
